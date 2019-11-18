@@ -12,40 +12,41 @@ import { environment } from 'src/environments/environment';
 export class WelcomeComponent implements OnInit {
 
   loading = false;
-  data:any;
+  data: any;
+  totalItems = 0;
+  pageIndex = 1;
 
   constructor(
     private http: HttpClient,
     public router: Router,
     private detailSrv: DetailService
   ) {
-
   }
 
   ngOnInit() {
-    if(localStorage.getItem('usr')){
-      this.http.get(environment.api_url + '/get_transaction?page=1&row=50').subscribe(success => {
+    if (localStorage.getItem('usr')) {
+      this.http.get(environment.api_url + '/get_transaction?page=1&row=8').subscribe(success => {
         console.log('SUCCESS', success);
+        this.totalItems = success['count'];
         this.data = success['result'];
       }, err => {
         console.log('ERROR', err);
-      });  
-    }else{
+      });
+    } else {
       this.router.navigate(['/login'])
     }
-    
   }
 
-  detailed(item){
+  detailed(item) {
     console.log(item)
     this.detailSrv.paramTransaction = item
     this.router.navigate(['welcome/detail'])
   }
 
-  filter(filter: string){
+  filter(filter: string) {
     this.data = null
-    if(filter === 'reset'){
-      this.http.get(environment.api_url + '/get_transaction?page=1&row=50').subscribe(success => {
+    if (filter === 'reset') {
+      this.http.get(environment.api_url + '/get_transaction?page=1&row=8').subscribe(success => {
         console.log('SUCCESS', success);
         this.data = success['result'];
       }, err => {
@@ -53,9 +54,19 @@ export class WelcomeComponent implements OnInit {
       });
       return;
     }
-    
-    this.http.get(environment.api_url + '/get_transaction?page=1&row=50&filter='+ filter).subscribe(success => {
+    this.http.get(environment.api_url + '/get_transaction?page=1&row=50&filter=' + filter).subscribe(success => {
       console.log('SUCCESS', success);
+      this.data = success['result'];
+    }, err => {
+      console.log('ERROR', err);
+    });
+  }
+
+  indexChanged(event) {
+    console.log("event", event);
+    this.http.get(environment.api_url + '/get_transaction?page=' + event + '&row=8').subscribe(success => {
+      console.log('SUCCESS', success);
+      this.totalItems = success['count'];
       this.data = success['result'];
     }, err => {
       console.log('ERROR', err);

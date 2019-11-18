@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://test-api.sketchfit.com/api/v1/admin'
+  api_url: 'https://test-api.sketchfit.com/api/v1/admin'
 };
 
 /*

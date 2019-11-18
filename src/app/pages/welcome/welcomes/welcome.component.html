@@ -1,7 +1,7 @@
 <div nz-row>
-    <div nz-col nzSpan="12">
-        <h3>Filter By Status: </h3>
-    </div>
+  <div nz-col nzSpan="12">
+    <h3>Filter By Status: </h3>
+  </div>
 </div>
 
 <div nz-row>
@@ -26,21 +26,22 @@
     </button>
   </div>
   <div nz-col nzSpan="2" class="margin-x">
-        <button nz-button nzType="default" nzShape="round" nzBlock (click)="filter('reset')">
-          Reset
-        </button>
-      </div>
+    <button nz-button nzType="default" nzShape="round" nzBlock (click)="filter('reset')">
+      Reset
+    </button>
+  </div>
+</div>
+
+<div nz-row nzType="flex" nzJustify="end" style="margin-top:15px"> 
+  <div nz-col nzSpan="9" style="width:unset">
+    <nz-pagination [nzPageIndex]="pageIndex" [nzPageSize]="8" [nzTotal]="totalItems" (nzPageIndexChange)="indexChanged($event)"></nz-pagination>
+  </div>
 </div>
 
 <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
   <ng-template ngFor let-item [ngForOf]="data" let-i="index">
     <div nz-col nzSpan="6">
-      <nz-card
-        class="margin-y"
-        style="height: 300px"
-        [nzTitle]="'#' + item.order_id"
-        [nzExtra]="extraTemplate"
-      >
+      <nz-card class="margin-y" style="height: 300px" [nzTitle]="'#' + item.order_id" [nzExtra]="extraTemplate">
         <small>Items</small>
         <p>{{ item.items || "Invalid data" }}</p>
         <small>Additional Notes</small>
