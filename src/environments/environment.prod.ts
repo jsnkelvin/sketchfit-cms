@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: 'http://dev-api.sketchfit.com/api/v1/admin'
+  api_url: 'https://dev-api.sketchfit.com/api/v1/admin'
 };
