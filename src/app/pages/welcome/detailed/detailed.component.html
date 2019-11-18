@@ -1,0 +1,80 @@
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3">Status</div>
+  <div nz-col nzSpan="4">
+    <p [ngStyle]="{ color: data?.color_status }">{{ data?.order_status }}</p>
+  </div>
+</div>
+<hr />
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><b>Order Id</b></div>
+  <div nz-col nzSpan="4">{{ data?.order_id }}</div>
+</div>
+<hr />
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="12">
+    <h2>Billing Info</h2>
+  </div>
+</div>
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Billing Name</strong></div>
+  <div nz-col nzSpan="4">{{ data?.billing_id?.billing_name }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Phone Number</strong></div>
+  <div nz-col nzSpan="4">{{ data?.billing_id?.billing_phone_number }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Email</strong></div>
+  <div nz-col nzSpan="4">{{ data?.billing_id?.email }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="12">
+    <h2>Package detail</h2>
+  </div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Name</strong></div>
+  <div nz-col nzSpan="4">{{ data?.package_id?.name }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Price</strong></div>
+  <div nz-col nzSpan="4">{{ data?.package_id?.price }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Send At</strong></div>
+  <div nz-col nzSpan="4">{{ data?.send_at }}</div>
+</div>
+
+<div nz-row>
+  <div nz-col nzSpan="12"><h2>Change Status:</h2></div>
+</div>
+
+<div nz-row>
+  <div nz-col nzSpan="4">
+    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+    nzPopconfirmTitle="Are you sure change status to 'Styling'?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="confirm('styling')"
+    (nzOnCancel)="cancel()">Styling</button>
+  </div>
+  <div nz-col nzSpan="4">
+    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+    nzPopconfirmTitle="Are you sure change status to 'Styling'?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="confirm('sent')"
+    (nzOnCancel)="cancel()">Sent</button>
+  </div>
+  <div nz-col nzSpan="4">
+    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+    nzPopconfirmTitle="Are you sure change status to 'Styling'?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="confirm('delivered')"
+    (nzOnCancel)="cancel()">Delivered</button>
+  </div>
+</div>
