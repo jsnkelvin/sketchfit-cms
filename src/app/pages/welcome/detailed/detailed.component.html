@@ -51,27 +51,48 @@
   <div nz-col nzSpan="4">{{ data?.send_at }}</div>
 </div>
 
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="12">
+    <h2>Shipment Info</h2>
+  </div>
+</div>
+
+<div nz-row>
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Name</strong></div>
+  <div nz-col nzSpan="4">  {{ data?.billing_id?. shipment_name }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Phone Number</strong></div>
+  <div nz-col nzSpan="4">{{ data?.billing_id?.shipment_phone_number }}</div>
+</div>
+
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Shipment Address</strong></div>
+  <div nz-col nzSpan="4">{{ data?.billing_id?.shipment_address }} <br>{{ data?.billing_id?.shipment_city }}, {{ data?.billing_id?.shipment_postal_code }}<br></div>
+</div>
+
 <div nz-row>
   <div nz-col nzSpan="12"><h2>Change Status:</h2></div>
 </div>
 
 <div nz-row>
-  <div nz-col nzSpan="4">
-    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+  <div nz-col nzSpan="4" style="margin-right: 1%">
+    <button nz-button nzBlock nzType="default" nzShape="round" nz-popconfirm
     nzPopconfirmTitle="Are you sure change status to 'Styling'?"
     nzPopconfirmPlacement="bottom"
     (nzOnConfirm)="confirm('styling')"
     (nzOnCancel)="cancel()">Styling</button>
   </div>
-  <div nz-col nzSpan="4">
-    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+  <div nz-col nzSpan="4"  style="margin-right: 1%">
+    <button nz-button nzBlock nzType="default" nzShape="round" nz-popconfirm
     nzPopconfirmTitle="Are you sure change status to 'Styling'?"
     nzPopconfirmPlacement="bottom"
     (nzOnConfirm)="confirm('sent')"
     (nzOnCancel)="cancel()">Sent</button>
   </div>
-  <div nz-col nzSpan="4">
-    <button nz-button nzType="default" nzShape="round" nz-popconfirm
+  <div nz-col nzSpan="4" style="margin-right: 1%">
+    <button nz-button nzBlock nzType="default" nzShape="round" nz-popconfirm
     nzPopconfirmTitle="Are you sure change status to 'Styling'?"
     nzPopconfirmPlacement="bottom"
     (nzOnConfirm)="confirm('delivered')"
