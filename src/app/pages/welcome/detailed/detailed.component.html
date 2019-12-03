@@ -1,3 +1,11 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['../../']">Order List</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    Order Detail
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 <div nz-row class="margin-y">
   <div nz-col nzSpan="3">Status</div>
   <div nz-col nzSpan="4">
@@ -47,8 +55,13 @@
 </div>
 
 <div nz-row class="margin-y">
+  <div nz-col nzSpan="3" nzOffset="2"><strong>Additional Note</strong></div>
+  <div nz-col nzSpan="4">{{ data?.additional_note || 'No additional notes'}}</div>
+</div>
+
+<div nz-row class="margin-y">
   <div nz-col nzSpan="3" nzOffset="2"><strong>Send At</strong></div>
-  <div nz-col nzSpan="4">{{ data?.send_at }}</div>
+  <div nz-col nzSpan="4">{{ data?.send_at || '-' }}</div>
 </div>
 
 <div nz-row class="margin-y">
