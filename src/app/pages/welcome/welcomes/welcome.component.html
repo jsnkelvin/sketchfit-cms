@@ -42,6 +42,8 @@
   <ng-template ngFor let-item [ngForOf]="data" let-i="index">
     <div nz-col nzSpan="6">
       <nz-card class="margin-y" style="height: 300px" [nzTitle]="'#' + item.order_id" [nzExtra]="extraTemplate">
+        <small>Client name</small>
+        <p>{{ item?.billing_id?.billing_name || "No name provided" }}</p>
         <small>Items</small>
         <p>{{ item.items || "Invalid data" }}</p>
         <!-- <small>Additional Notes</small> -->
