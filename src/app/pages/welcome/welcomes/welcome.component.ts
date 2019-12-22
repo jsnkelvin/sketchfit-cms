@@ -55,13 +55,8 @@ export class WelcomeComponent implements OnInit {
   }
 
   filter(filter: string) {
-    if (this.currFilter === filter) { 
-      this.pagination.updatePageIndexValue(1);
-    }
-    else {
-      this.currFilter = filter;
-      this.pagination.updatePageIndexValue(1);
-    }
+    this.pagination.updatePageIndexValue(1);
+    this.currFilter = filter;
     const self = this;
     this.data = null;
     if (filter === 'reset') {
@@ -84,13 +79,16 @@ export class WelcomeComponent implements OnInit {
 
   indexChanged(event) {
     console.log('event', event);
-    this.http.get<OrderData>(environment.api_url + '/get_transaction?page=' + event + '&row=8&filter=' + this.currFilter).subscribe(success => {
-      console.log('SUCCESS', success);
-      this.totalItems = success.count;
-      this.data = success.result;
-    }, err => {
-      console.log('ERROR', err);
-    });
+    this.http.get<OrderData>(environment.api_url +
+      '/get_transaction?page=' + event +
+      '&row=8&filter=' + this.currFilter)
+      .subscribe(success => {
+        console.log('SUCCESS', success);
+        this.totalItems = success.count;
+        this.data = success.result;
+      }, err => {
+        console.log('ERROR', err);
+      });
   }
 
 }

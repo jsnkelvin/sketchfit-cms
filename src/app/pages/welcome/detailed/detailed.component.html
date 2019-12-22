@@ -112,8 +112,22 @@
     (nzOnCancel)="cancel()">Delivered</button>
   </div>
 </div>
-<div nz-row *ngIf="data?.order_status == 'Proses pengiriman barang'">
+
+<!-- Input no. resi section -->
+<!-- <div nz-row style="margin-top:30px" *ngIf="data?.order_status == 'Proses Pengiriman Box'">
   <div nz-col nzSpan="4">
-    <input nz-input placeholder="Input no. resi (Jika ada)" [(ngModel)]="value" [disabled]="true" />
+    <input nz-input placeholder="Input no. resi (Jika ada)" [(ngModel)]="resi" />
   </div>
-</div>
+  <div nz-col nzSpan="1" class="margin-x"></div>
+
+  <div nz-col nzSpan="2" class="margin-x">
+    <button
+      nz-button
+      nzType="primary"
+      nzBlock
+      (click)="submit('123123123')"
+    >
+      Submit resi
+    </button>
+  </div>
+</div> -->

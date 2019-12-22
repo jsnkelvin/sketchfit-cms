@@ -12,13 +12,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./detailed.component.scss']
 })
 export class DetailedComponent implements OnInit {
-  data
+  data;
+  resi;
 
   headerAdmin = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
-  }
+  };
 
   constructor(
     detailSrv: DetailService,
@@ -26,9 +27,9 @@ export class DetailedComponent implements OnInit {
     public router: Router,
     public nzMessageService: NzMessageService
   ) {
-    if(detailSrv.paramTransaction){
-    this.data = detailSrv.paramTransaction}else{
-      this.router.navigate(['/'])
+    if (detailSrv.paramTransaction) {
+    this.data = detailSrv.paramTransaction;} else {
+      this.router.navigate(['/']);
     }
   }
 
@@ -39,20 +40,20 @@ export class DetailedComponent implements OnInit {
 
   }
 
-  confirm(status:string): void {
+  confirm(status: string): void {
     const body = {
       transaction_id: this.data.id,
-      status:status
-    }
-    console.log(body)
+      status
+    };
+    console.log(body);
     this.httpClient.put(environment.api_url + '/update_order_status', body, this.headerAdmin).subscribe(data => {
-      console.log(data)
+      console.log(data);
       this.nzMessageService.success('Update Transaction Berhasil');
-      this.router.navigate(['/welcome/list'])
+      this.router.navigate(['/welcome/list']);
     }, err => {
       this.nzMessageService.error('Something went wrong!');
-    })
-    
+    });
+
   }
 
 }
