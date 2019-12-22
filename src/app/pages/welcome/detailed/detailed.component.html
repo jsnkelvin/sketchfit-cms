@@ -112,3 +112,8 @@
     (nzOnCancel)="cancel()">Delivered</button>
   </div>
 </div>
+<div nz-row *ngIf="data?.order_status == 'Proses pengiriman barang'">
+  <div nz-col nzSpan="4">
+    <input nz-input placeholder="Input no. resi (Jika ada)" [(ngModel)]="value" [disabled]="true" />
+  </div>
+</div>
