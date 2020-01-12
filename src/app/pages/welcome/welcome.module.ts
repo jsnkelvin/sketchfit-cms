@@ -10,21 +10,23 @@ import { HomeComponent } from './home.component';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { FormsModule } from '@angular/forms';
+import { ReviewComponent } from './review/review.component';
+import { ExchangeComponent } from './exchange/exchange.component';
 
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, 
-    CommonModule, 
+  imports: [WelcomeRoutingModule,
+    CommonModule,
     FormsModule,
-    NzGridModule, 
-    NzPaginationModule, NgZorroAntdModule, NzModalModule, NzCardModule, 
-    NzButtonModule, 
+    NzGridModule,
+    NzPaginationModule, NgZorroAntdModule, NzModalModule, NzCardModule,
+    NzButtonModule,
     NzSelectModule,
-    NzPopconfirmModule, 
+    NzPopconfirmModule,
     NzInputModule,
     NzMessageModule],
-  declarations: [WelcomeComponent, DetailedComponent, HomeComponent],
+  declarations: [WelcomeComponent, DetailedComponent, HomeComponent, ReviewComponent, ExchangeComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }

@@ -1,0 +1,38 @@
+<div nz-row>
+  <div nz-col nzSpan="12">
+    <h3>Review List</h3>
+  </div>
+</div>
+
+<div nz-row>
+  <nz-list [nzDataSource]="reviewData" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+    <ng-template #item let-item>
+      <nz-comment [nzAuthor]="item.user_id.name" [nzDatetime]="item.datetime">
+        <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
+        <nz-comment-content>
+          <p>
+            <small
+              ><b>Transaction ID : #{{ item.order_id }} </b></small
+            ><br />
+            <small><b>Review: </b></small>{{ item.review || '-' }}
+            <br/>
+            <small><b>Rate: {{item.star}} / 5</b></small>
+          </p>
+        </nz-comment-content>
+      </nz-comment>
+    </ng-template>
+  </nz-list>
+  <!-- <ng-template ngFor let-item [ngForOf]="reviewData" let-i="index">
+    <div nz-col nzSpan="6">
+      <nz-comment [nzAuthor]="item.user_id.name" [nzDatetime]="item.datetime">
+        <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
+        <nz-comment-content>
+          <p>
+           {{ item.review }}<br/>
+           <nz-rate [ngModel]="item.star" nzDisabled></nz-rate>
+          </p>
+        </nz-comment-content>
+      </nz-comment>
+    </div>
+  </ng-template> -->
+</div>
