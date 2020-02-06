@@ -135,7 +135,6 @@
     <div nz-col nzSpan="6">
       <nz-card
         class="margin-y"
-        style="height: 300px"
         [nzTitle]="'#' + item.order_id"
         [nzExtra]="extraTemplate"
       >
@@ -143,6 +142,8 @@
         <p>{{ item?.billing_id?.shipment_name || "No name provided" }}</p>
         <small>Items</small>
         <p>{{ item.items || "Invalid data" }}</p>
+        <small>Created At</small>
+        <p>{{ item.createdAt | date:'medium' }}</p>
         <!-- <small>Additional Notes</small> -->
         <!-- <p>{{ item.additional_note || "No requests" }}</p> -->
         <small>Total Payment</small>

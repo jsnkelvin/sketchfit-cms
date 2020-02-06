@@ -111,6 +111,34 @@
   </div>
 </div>
 
+<div nz-row class="margin-y">
+  <div nz-col nzSpan="12">
+    <h2>Courier Info</h2>
+  </div>
+</div>
+
+<div nz-row>
+  <form nz-form [formGroup]="fg" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="kurir">Kurir</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input your courier..">
+        <input id="kurir" type="text" nz-input formControlName="courier" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" nzRequired nzFor="resi">Nomor Resi</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input receipt Number..">
+        <input id="resi" type="text" nz-input formControlName="receipt_number" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="12" [nzOffset]="5">
+        <button nz-button nzType="primary">Submit</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+
 <div nz-row>
   <div nz-col nzSpan="12"><h2>Change Status:</h2></div>
 </div>
