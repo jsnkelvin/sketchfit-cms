@@ -12,6 +12,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewComponent } from './review/review.component';
 import { ExchangeComponent } from './exchange/exchange.component';
+import { UsersComponent } from './users/users.component';
+import { DetailComponent } from './users/detail/detail.component';
 
 
 
@@ -28,7 +30,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
     NzFormModule,
     NzInputModule,
     NzMessageModule],
-  declarations: [WelcomeComponent, DetailedComponent, HomeComponent, ReviewComponent, ExchangeComponent],
+  declarations: [WelcomeComponent, DetailedComponent, HomeComponent, ReviewComponent, ExchangeComponent, UsersComponent, DetailComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }

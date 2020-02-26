@@ -1,0 +1,89 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['../../']">User List</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    User Detail - #{{transactionData[0]?.user_id}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-table #basicTable [nzData]="transactionData">
+  <thead>
+    <tr>
+      <th>Items</th>
+      <th>Created at</th>
+      <th>Total payment</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td>{{ data.items || "-" }}</td>
+      <td>{{ data.createdAt }}</td>
+      <td>{{ data.payment_total | currency: "IDR " }}</td>
+      <td>
+        <nz-tag>{{ data.status | titlecase }}</nz-tag>
+      </td>
+      <td>
+        <button
+          *ngIf="data.stylist_note"
+          nz-button
+          [nzType]="'dashed'"
+          (click)="showModal(data, i, 'view')"
+        >
+          View notes
+        </button>
+        <button
+          *ngIf="!data.stylist_note"
+          nz-button
+          [nzType]="'dashed'"
+          (click)="showModal(data, i, 'upload')"
+        >
+          Upload notes
+        </button>
+        <button
+          *ngIf="data.stylist_note"
+          nz-button
+          [nzType]="'dashed'"
+          (click)="showModal(data, i, 'upload')"
+        >
+          Edit notes
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Stylist notes"
+  (nzOnCancel)="handleCancel('view')"
+  (nzOnOk)="handleOk('view')"
+>
+  <nz-avatar nzIcon="user" [nzSrc]="avatarURL"></nz-avatar>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isUpload"
+  nzTitle="Stylist notes"
+  (nzOnCancel)="handleCancel('upload')"
+  (nzOnOk)="handleOk('upload')"
+>
+  <nz-upload
+    nzType="drag"
+    [nzLimit]="1"
+    [nzAction]="uploadURL"
+    (nzChange)="handleChange($event)"
+    [nzCustomRequest]="customReq"
+    [nzShowUploadList]="false"
+  >
+    <p class="ant-upload-drag-icon">
+      <i nz-icon nzType="inbox"></i>
+    </p>
+    <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    <p class="ant-upload-hint">
+      Support for a single or bulk upload. Strictly prohibit from uploading
+      company data or other band files
+    </p>
+  </nz-upload>
+</nz-modal>

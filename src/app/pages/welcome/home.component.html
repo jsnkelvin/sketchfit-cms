@@ -10,8 +10,12 @@
           <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
             <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
               <ul>
+                
                 <li nz-menu-item nzMatchRouter>
                   <a routerLink="/welcome">Order List</a>
+                </li>
+                <li nz-menu-item nzMatchRouter>
+                  <a routerLink="/welcome/users">User List</a>
                 </li>
                 <li nz-menu-item nzMatchRouter>
                   <a routerLink="/welcome/review">Review List</a>

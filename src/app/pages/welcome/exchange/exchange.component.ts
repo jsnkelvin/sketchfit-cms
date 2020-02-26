@@ -13,7 +13,7 @@ export class ExchangeComponent implements OnInit {
   exchangeData = [];
 
   constructor(
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
