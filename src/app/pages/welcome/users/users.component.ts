@@ -21,9 +21,6 @@ export class UsersComponent implements OnInit {
     this.http.get(environment.api_url + '/user?page=1&row=999').subscribe(data => {
       console.log(data);
       this.userData = data['result'];
-      this.userData.forEach(element => {
-        element.age = differenceInCalendarYears(new Date(), element.date_of_birth);
-      });
     });
   }
 

@@ -11,7 +11,7 @@ import { UploadChangeParam, NzMessageService, UploadXHRArgs } from 'ng-zorro-ant
 })
 export class DetailComponent implements OnInit {
 
-  transactionData = '';
+  transactionData: any = '';
   isVisible = false;
   uploadURL = '';
   isNotesUploaded = false;

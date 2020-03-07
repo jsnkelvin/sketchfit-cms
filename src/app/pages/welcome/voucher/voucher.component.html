@@ -1,0 +1,41 @@
+<div nz-row>
+  <div nz-col nzSpan="12">
+    <h3>Voucher List</h3>
+  </div>
+  <div nz-col nzSpan="12" style="text-align: right;">
+    <button nz-button nzType="default" nzSize="large">Add new voucher</button>
+  </div>
+</div>
+<div nz-row style="margin-top:16px">
+  <nz-table #basicTable [nzData]="voucherData">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Deduction Type</th>
+        <th>Value</th>
+        <th>Expired date</th>
+        <th>Last updated</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.voucher_code || "-" }}</td>
+        <td>{{ data.type | titlecase }}</td>
+        <td>
+          {{ data.value }} <small *ngIf="data.type == 'discount'">%</small>
+        </td>
+        <td>
+          {{ data.expire_date | date: "medium" }}
+          <small *ngIf="!data.expire_date">No expiry date</small>
+        </td>
+        <td>{{ data.updatedAt | date: "medium" }}</td>
+        <td>{{ data.status }}</td>
+        <td>
+          <a [routerLink]="['detail/', data.id]">See detail</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

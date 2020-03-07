@@ -8,6 +8,7 @@ import { ReviewComponent } from './review/review.component';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { UsersComponent } from './users/users.component';
 import { DetailComponent } from './users/detail/detail.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'users/detail/:id', component: DetailComponent },
       { path: 'detail', component: DetailedComponent },
       { path: 'review', component: ReviewComponent },
-      { path: 'exchange', component: ExchangeComponent }
+      { path: 'exchange', component: ExchangeComponent },
+      { path: 'voucher', component: VoucherComponent }
     ]
   }
 ];
