@@ -2,15 +2,25 @@
   <div nz-col nzSpan="12">
     <h3>Order List</h3>
   </div>
+  <div nz-col nzSpan="12" style="text-align: right;">
+    Show 
+    <nz-select style="width:70px" [(ngModel)]="pageSize" nzPlaceHolder="Select" (ngModelChange)="getOrderList()">
+      <nz-option nzValue="8" nzLabel="8"></nz-option>
+      <nz-option nzValue="16" nzLabel="16"></nz-option>
+      <nz-option nzValue="32" nzLabel="32"></nz-option>
+    </nz-select>
+    items
+  </div>
 </div>
 
-<div nz-row>
+<div nz-row style="margin-top:16px">
   <div nz-col nzSpan="12">
     <nz-radio-group
       [(ngModel)]="currFilter"
       [nzButtonStyle]="'solid'"
-      (ngModelChange)="filter($event)"
+      (ngModelChange)="getOrderList()"
     >
+      <label nz-radio-button nzValue="">All</label>
       <label nz-radio-button nzValue="styling">Styling</label>
       <label nz-radio-button nzValue="sent">Sent</label>
       <label nz-radio-button nzValue="delivered">Delivered</label>
@@ -19,12 +29,7 @@
       <label nz-radio-button nzValue="cancel">Cancelled</label>
     </nz-radio-group>
   </div>
-  <div nz-col nzSpan="2">
-    <button *ngIf="currFilter != ''" nz-button nzType="danger" nzGhost nzBlock (click)="filter('reset')">
-      Reset
-    </button>
-  </div>
-  <div nz-col nzSpan="8" nzOffset="2">
+  <div nz-col nzSpan="10" nzOffset="2">
     <nz-input-group [nzSuffix]="suffixTemplate">
       <input #search type="text" nz-input placeholder="Search by id, email, or name" />
     </nz-input-group>
@@ -36,102 +41,11 @@
         nzTheme="fill"
         nzType="close-circle"
         *ngIf="search.value"
-        (click)="getOrderList();search.value = null"
+        (click)="search.value = null;currKeyword = '';getOrderList()"
       ></i
     ></ng-template>
   </div>
 </div>
-
-<!-- <div nz-row>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('styling')"
-    >
-      Styling
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('sent')"
-    >
-      Sent
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('delivered')"
-    >
-      Delivered
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('paid')"
-    >
-      Paid
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('expire')"
-    >
-      Expired
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x">
-    <button
-      nz-button
-      nzType="default"
-      nzShape="round"
-      nzBlock
-      (click)="filter('cancel')"
-    >
-      Cancelled
-    </button>
-  </div>
-  <div nz-col nzSpan="2" class="margin-x" *ngIf="currFilter != ''">
-    <button
-      nz-button
-      nzType="danger"
-      nzGhost
-      nzBlock
-      (click)="filter('reset')"
-    >
-      Reset Filter
-    </button>
-  </div>
-</div> -->
-
-<!-- <div nz-row nzType="flex" nzJustify="end" style="margin-top:15px"> 
-  <div nz-col nzSpan="9" style="width:unset">
-    Show
-    <nz-select [(ngModel)]="pageSize" nzAllowClear nzPlaceHolder="Choose">
-      <nz-option nzValue="8" nzLabel="8"></nz-option>
-      <nz-option nzValue="12" nzLabel="12"></nz-option>
-    </nz-select>
-    Items
-  </div>
-</div> -->
 
 <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }" style="margin-top:16px">
   <ng-template ngFor let-item [ngForOf]="data" let-i="index">
@@ -167,8 +81,8 @@
 <div nz-row nzType="flex" nzJustify="end">
   <div nz-col nzSpan="9" style="width:unset">
     <nz-pagination
-      [nzPageIndex]="1"
-      [nzPageSize]="8"
+      [nzPageIndex]="pageIndex"
+      [nzPageSize]="pageSize"
       [nzTotal]="totalItems"
       (nzPageIndexChange)="indexChanged($event)"
     ></nz-pagination>

@@ -33,7 +33,8 @@ export class WelcomeComponent implements OnInit {
   totalItems = 0;
   pageIndex = 1;
   currFilter = '';
-  pageSize = 8;
+  currKeyword = '';
+  pageSize = '8';
   searchValue;
 
   constructor(
@@ -58,28 +59,24 @@ export class WelcomeComponent implements OnInit {
       , debounceTime(300)
       , distinctUntilChanged()
     ).subscribe((text: string) => {
-      this.submitSearch(text).subscribe((success) => {
-        console.log('submit search', success);
-        this.totalItems = success.count;
-        this.data = success.result;
-      }, (err) => {
-        console.log('error', err);
-      });
+      this.currKeyword = text;
+      this.getOrderList();
     });
   }
 
   getOrderList() {
-    this.http.get<OrderData>(environment.api_url + '/get_transaction?page=1&row=8').subscribe(success => {
-      console.log('SUCCESS', success);
-      this.totalItems = success.count;
-      this.data = success.result;
-    }, err => {
-      console.log('ERROR', err);
-    });
-  }
-
-  submitSearch(value) {
-    return this.http.get<OrderData>(environment.api_url + '/get_transaction?page=1&row=8&search=' + value);
+    this.http.get<OrderData>(environment.api_url +
+      '/get_transaction?page=' + this.pageIndex +
+      '&row=' + this.pageSize +
+      '&search=' + this.currKeyword +
+      '&filter=' + this.currFilter)
+      .subscribe(success => {
+        console.log('SUCCESS', success);
+        this.totalItems = success.count;
+        this.data = success.result;
+      }, err => {
+        console.log('ERROR', err);
+      });
   }
 
   detailed(item) {
@@ -88,34 +85,14 @@ export class WelcomeComponent implements OnInit {
     this.router.navigate(['welcome/detail']);
   }
 
-  filter(filter: string) {
-    this.pagination.updatePageIndexValue(1);
-    this.currFilter = filter;
-    const self = this;
-    this.data = null;
-    if (filter === 'reset') {
-      this.currFilter = '';
-      this.http.get<OrderData>(environment.api_url + '/get_transaction?page=1&row=8').subscribe(success => {
-        console.log('SUCCESS', success);
-        this.data = success.result;
-      }, err => {
-        console.log('ERROR', err);
-      });
-    } else {
-      this.http.get<OrderData>(environment.api_url + '/get_transaction?page=1&row=8&filter=' + filter).subscribe(success => {
-        this.totalItems = success.count;
-        this.data = success.result;
-      }, err => {
-        console.log('ERROR', err);
-      });
-    }
-  }
-
   indexChanged(event) {
+    this.pageIndex = event;
     console.log('event', event);
     this.http.get<OrderData>(environment.api_url +
       '/get_transaction?page=' + event +
-      '&row=8&filter=' + this.currFilter)
+      '&row=' + this.pageSize +
+      '&search=' + this.currKeyword +
+      '&filter=' + this.currFilter)
       .subscribe(success => {
         console.log('SUCCESS', success);
         this.totalItems = success.count;

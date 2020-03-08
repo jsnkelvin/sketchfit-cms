@@ -33,7 +33,7 @@
         <td>{{ data.updatedAt | date: "medium" }}</td>
         <td>{{ data.status }}</td>
         <td>
-          <a [routerLink]="['detail/', data.id]">See detail</a>
+          <a (click)="editVoucher(data)">Edit voucher</a>
         </td>
       </tr>
     </tbody>

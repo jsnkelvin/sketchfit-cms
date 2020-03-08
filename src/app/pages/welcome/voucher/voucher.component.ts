@@ -21,4 +21,8 @@ export class VoucherComponent implements OnInit {
     });
   }
 
+  editVoucher(voucher) {
+    console.log("Masuk edit", voucher)
+  }
+
 }
