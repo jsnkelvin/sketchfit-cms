@@ -2,26 +2,69 @@
   <div nz-col nzSpan="12">
     <h3>User List</h3>
   </div>
+  <!-- <div nz-col nzSpan="12" style="text-align: right;">
+    Show
+    <nz-select
+      style="width:70px"
+      [(ngModel)]="pageSize"
+      nzPlaceHolder="Select"
+      (ngModelChange)="getOrderList()"
+    >
+      <nz-option nzValue="8" nzLabel="8"></nz-option>
+      <nz-option nzValue="16" nzLabel="16"></nz-option>
+      <nz-option nzValue="32" nzLabel="32"></nz-option>
+    </nz-select>
+    items
+  </div> -->
 </div>
-<nz-table #basicTable [nzData]="userData">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>E-mail</th>
-        <th>Age</th>
-        <th>Address</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>{{ data.name || '-' }}</td>
-        <td>{{ data.email }}</td>
-        <td>{{ data.age }}</td>
-        <td>{{ data.address }}</td>
-        <td>
-          <a [routerLink]="['detail/', data.id]">See detail</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+
+<div nz-row style="margin-top:16px">
+  <div nz-col nzSpan="12">
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input
+        #search
+        type="text"
+        nz-input
+        placeholder="Search using email or name"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplate
+      ><i
+        nz-icon
+        nz-tooltip
+        class="ant-input-clear-icon"
+        nzTheme="fill"
+        nzType="close-circle"
+        *ngIf="search.value"
+        (click)="search.value = null; currKeyword = ''; getUserList()"
+      ></i
+    ></ng-template>
+  </div>
+</div>
+
+<nz-table #basicTable 
+[nzData]="userData" 
+[nzFrontPagination]="false" 
+(nzPageIndexChange)="indexChanged($event)"
+[nzTotal]="totalItems" style="margin-top:16px">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name || "-" }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.gender == 'm' ? 'Male' : (data.gender == 'f' ? 'Female' : '-')}}</td>
+      <td>{{ data.address }}</td>
+      <td>
+        <a [routerLink]="['detail/', data.id]">See detail</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

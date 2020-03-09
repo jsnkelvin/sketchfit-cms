@@ -3,7 +3,7 @@
     <a [routerLink]="['../../']">User List</a>
   </nz-breadcrumb-item>
   <nz-breadcrumb-item>
-    User Detail - #{{transactionData[0]?.user_id}}
+    User Detail - {{transactionData[0]?.billing_id.email}}
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <nz-table #basicTable [nzData]="transactionData">

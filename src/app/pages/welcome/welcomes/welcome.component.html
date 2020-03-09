@@ -3,8 +3,13 @@
     <h3>Order List</h3>
   </div>
   <div nz-col nzSpan="12" style="text-align: right;">
-    Show 
-    <nz-select style="width:70px" [(ngModel)]="pageSize" nzPlaceHolder="Select" (ngModelChange)="getOrderList()">
+    Show
+    <nz-select
+      style="width:70px"
+      [(ngModel)]="pageSize"
+      nzPlaceHolder="Select"
+      (ngModelChange)="getOrderList()"
+    >
       <nz-option nzValue="8" nzLabel="8"></nz-option>
       <nz-option nzValue="16" nzLabel="16"></nz-option>
       <nz-option nzValue="32" nzLabel="32"></nz-option>
@@ -31,7 +36,12 @@
   </div>
   <div nz-col nzSpan="10" nzOffset="2">
     <nz-input-group [nzSuffix]="suffixTemplate">
-      <input #search type="text" nz-input placeholder="Search by id, email, or name" />
+      <input
+        #search
+        type="text"
+        nz-input
+        placeholder="Search using id, email, or name"
+      />
     </nz-input-group>
     <ng-template #suffixTemplate
       ><i
@@ -41,13 +51,17 @@
         nzTheme="fill"
         nzType="close-circle"
         *ngIf="search.value"
-        (click)="search.value = null;currKeyword = '';getOrderList()"
+        (click)="search.value = null; currKeyword = ''; getOrderList()"
       ></i
     ></ng-template>
   </div>
 </div>
 
-<div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }" style="margin-top:16px">
+<div
+  nz-row
+  [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }"
+  style="margin-top:16px"
+>
   <ng-template ngFor let-item [ngForOf]="data" let-i="index">
     <div nz-col nzSpan="6">
       <nz-card
