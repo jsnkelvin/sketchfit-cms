@@ -48,7 +48,7 @@
   [nzOkLoading]="isOkLoading"
   nzOkText="{{currFormMode | titlecase}}"
 >
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <form nz-form [formGroup]="validateForm">
     <nz-form-item>
       <nz-form-label [nzSpan]="6" nzRequired nzFor="voucher_code"
         >Voucher code</nz-form-label

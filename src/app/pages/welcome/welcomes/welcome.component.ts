@@ -60,6 +60,7 @@ export class WelcomeComponent implements OnInit {
       , distinctUntilChanged()
     ).subscribe((text: string) => {
       this.currKeyword = text;
+      this.pageIndex = 1;
       this.getOrderList();
     });
   }

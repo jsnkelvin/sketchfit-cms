@@ -12,7 +12,7 @@ import * as moment from 'moment';
 export class VoucherComponent implements OnInit {
 
   voucherData = '';
-  currVoucher = '';
+  currVoucher: any;
   currFormMode = '';
   isVisible = false;
   isOkLoading = false;
