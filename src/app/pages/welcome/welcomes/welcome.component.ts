@@ -31,7 +31,7 @@ export class WelcomeComponent implements OnInit {
   loading = false;
   data: any;
   totalItems = 0;
-  pageIndex = 1;
+  // pageIndex = this.detailSrv.pageIndexTrans || 1
   currFilter = '';
   currKeyword = '';
   pageSize = '8';
@@ -40,7 +40,7 @@ export class WelcomeComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public router: Router,
-    private detailSrv: DetailService,
+    public detailSrv: DetailService,
   ) {
   }
 
@@ -60,14 +60,14 @@ export class WelcomeComponent implements OnInit {
       , distinctUntilChanged()
     ).subscribe((text: string) => {
       this.currKeyword = text;
-      this.pageIndex = 1;
+      this.detailSrv.pageIndexTrans = 1;
       this.getOrderList();
     });
   }
 
   getOrderList() {
     this.http.get<OrderData>(environment.api_url +
-      '/get_transaction?page=' + this.pageIndex +
+      '/get_transaction?page=' + this.detailSrv.pageIndexTrans +
       '&row=' + this.pageSize +
       '&search=' + this.currKeyword +
       '&filter=' + this.currFilter)
@@ -87,7 +87,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   indexChanged(event) {
-    this.pageIndex = event;
+    this.detailSrv.pageIndexTrans = event;
     console.log('event', event);
     this.http.get<OrderData>(environment.api_url +
       '/get_transaction?page=' + event +

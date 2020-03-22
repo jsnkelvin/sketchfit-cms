@@ -1,0 +1,34 @@
+<div nz-row style="margin: 2rem;">
+  <div nz-col nzSpan="12">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['../../']">Voucher List</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        Detail Used Voucher - <b>voucher_code</b>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div nz-col nzSpan="12" style="text-align: right;">
+    User Used Voucher : <b>{{ count }}</b>
+  </div>
+</div>
+
+<nz-table #basicTable [nzData]="dataDetail">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Items</th>
+      <th>Created at</th>
+      <th>User Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataDetail; let i = index">
+      <td>{{ data.order_id || "-" }}</td>
+      <td>{{ data.items || "-" }}</td>
+      <td>{{ data.createdAt | date: "fullDate" }}</td>
+      <td>{{ data.user_id.name }}</td>
+    </tr>
+  </tbody>
+</nz-table>

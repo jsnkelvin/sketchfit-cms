@@ -9,6 +9,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
 import { UsersComponent } from './users/users.component';
 import { DetailComponent } from './users/detail/detail.component';
 import { VoucherComponent } from './voucher/voucher.component';
+import { DetailVoucherComponent } from './voucher/detail-voucher/detail-voucher.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'detail', component: DetailedComponent },
       { path: 'review', component: ReviewComponent },
       { path: 'exchange', component: ExchangeComponent },
-      { path: 'voucher', component: VoucherComponent }
+      { path: 'voucher', component: VoucherComponent },
+      { path: 'voucher/detail/:id', component: DetailVoucherComponent }
     ]
   }
 ];

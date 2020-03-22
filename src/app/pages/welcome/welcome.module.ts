@@ -15,6 +15,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
 import { UsersComponent } from './users/users.component';
 import { DetailComponent } from './users/detail/detail.component';
 import { VoucherComponent } from './voucher/voucher.component';
+import { DetailVoucherComponent } from './voucher/detail-voucher/detail-voucher.component';
 
 
 
@@ -31,7 +32,7 @@ import { VoucherComponent } from './voucher/voucher.component';
     NzFormModule,
     NzInputModule,
     NzMessageModule],
-  declarations: [WelcomeComponent, DetailedComponent, HomeComponent, ReviewComponent, ExchangeComponent, UsersComponent, DetailComponent, VoucherComponent],
+  declarations: [WelcomeComponent, DetailedComponent, HomeComponent, ReviewComponent, ExchangeComponent, UsersComponent, DetailComponent, VoucherComponent, DetailVoucherComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }

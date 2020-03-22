@@ -95,7 +95,7 @@
 <div nz-row nzType="flex" nzJustify="end">
   <div nz-col nzSpan="9" style="width:unset">
     <nz-pagination
-      [nzPageIndex]="pageIndex"
+      [nzPageIndex]="detailSrv.pageIndexTrans"
       [nzPageSize]="pageSize"
       [nzTotal]="totalItems"
       (nzPageIndexChange)="indexChanged($event)"

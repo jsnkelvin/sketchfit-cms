@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DetailService {
   paramTransaction
+  pageIndexTrans: number = 1
 
   constructor() { }
 

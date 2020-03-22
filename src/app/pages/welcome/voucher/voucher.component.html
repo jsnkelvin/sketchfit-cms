@@ -16,7 +16,8 @@
         <th>Expired date</th>
         <th>Last updated</th>
         <th>Status</th>
-        <th>Action</th>
+        <th colspan="2">Action</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,10 @@
         <td>{{ data.status }}</td>
         <td>
           <a (click)="showModal('edit', data)">Edit voucher</a>
+          
+        </td>
+        <td>
+          <a [routerLink]="['detail', data.voucher_code]">List User Used Voucher</a>
         </td>
       </tr>
     </tbody>

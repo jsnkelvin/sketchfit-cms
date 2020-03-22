@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpEvent } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UploadChangeParam, NzMessageService, UploadXHRArgs } from 'ng-zorro-antd';
+import { DetailService } from 'src/app/shared/detail.service';
 
 @Component({
   selector: 'app-detail',
@@ -23,8 +24,11 @@ export class DetailComponent implements OnInit {
     public actRoute: ActivatedRoute,
     public http: HttpClient,
     private msg: NzMessageService,
+    private detailSrv: DetailService,
     public _ngZone: NgZone
-  ) { }
+  ) {
+    console.log('CEK INDEX', this.detailSrv)
+  }
 
   customReq = (item: UploadXHRArgs) => {
     // Create a FormData here to store files and other parameters.
