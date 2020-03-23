@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -55,6 +55,10 @@ export class UsersComponent implements OnInit {
       }, err => {
         console.log('ERROR', err);
       });
+  }
+
+  exportData(){
+    window.open(environment.api_url + '/user/export?start_date=2019-01-01&end_date=2020-02-05','_blank');
   }
 
   indexChanged(event) {
