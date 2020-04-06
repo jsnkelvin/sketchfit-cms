@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-users',
@@ -14,12 +15,15 @@ export class UsersComponent implements OnInit {
   @ViewChild('search', { static: true }) search: ElementRef;
 
   userData = [];
-  totalItems = 0;
   pageIndex = 1;
   currFilter = '';
   currKeyword = '';
   pageSize = '8';
   searchValue;
+  totalItems: any;
+  isVisible = false;
+  dateRange;
+
   constructor(
     public http: HttpClient,
     public router: Router
@@ -57,8 +61,8 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  exportData(){
-    window.open(environment.api_url + '/user/export?start_date=2019-01-01&end_date=2020-02-05','_blank');
+  exportData(startDate, endDate) {
+    window.open(environment.api_url + '/user/export?start_date=' + startDate + '&end_date=' + endDate,'_blank');
   }
 
   indexChanged(event) {
@@ -76,6 +80,28 @@ export class UsersComponent implements OnInit {
       }, err => {
         console.log('ERROR', err);
       });
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    const startDate = moment(this.dateRange[0]).format('YYYY-MM-DD');
+    const endDate = moment(this.dateRange[1]).format('YYYY-MM-DD');
+    console.log('Button ok clicked!', startDate, endDate);
+    console.log(this.dateRange);
+    this.exportData(startDate, endDate);
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
+
+  onChange(result: Date): void {
+    // console.log('onChange: ', result);
   }
 
 }

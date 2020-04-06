@@ -41,7 +41,7 @@
     ></ng-template>
   </div>
   <div nz-col nzSpan="12" style="text-align: right;">
-    <button nz-button nzType="default" (click)="exportData()">Export user data</button>
+    <button nz-button nzType="default" (click)="showModal()">Export user data</button>
   </div>
 </div>
 
@@ -71,3 +71,10 @@
     </tr>
   </tbody>
 </nz-table>
+
+<nz-modal 
+  [(nzVisible)]="isVisible" 
+  nzTitle="Pick date to export user data" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" 
+  nzOkText='Export'>
+  <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
+</nz-modal>
