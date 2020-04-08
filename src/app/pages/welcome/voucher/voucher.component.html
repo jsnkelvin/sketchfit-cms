@@ -12,12 +12,14 @@
       <tr>
         <th>Code</th>
         <th>Deduction Type</th>
-        <th>Value</th>
+        <th>Value (%)</th>
         <th>Expired date</th>
         <th>Last updated</th>
         <th>Status</th>
-        <th colspan="2">Action</th>
-        
+        <th>Qty</th>
+        <th colspan="2">
+          Action
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -25,20 +27,30 @@
         <td>{{ data.voucher_code || "-" }}</td>
         <td>{{ data.type | titlecase }}</td>
         <td>
-          {{ data.value }} <small *ngIf="data.type == 'discount'">%</small>
+          {{ data.value }} <span *ngIf="data.type == 'discount'">%</span>
         </td>
         <td>
-          {{ data.expire_date | date: "medium" }}
-          <small *ngIf="!data.expire_date">No expiry date</small>
+          {{ data.expire_date | date: 'longDate' }}
+          <span *ngIf="!data.expire_date">No expiry date</span>
         </td>
-        <td>{{ data.updatedAt | date: "medium" }}</td>
+        <td>{{ data.updatedAt }}</td>
         <td>{{ data.status }}</td>
+        <td>{{ data.limit }}</td>
         <td>
-          <a (click)="showModal('edit', data)">Edit voucher</a>
-          
+          <button
+          nz-button
+          [nzType]="'dashed'"
+          (click)="showModal('edit', data)">
+          Edit
+          </button>
         </td>
         <td>
-          <a [routerLink]="['detail', data.voucher_code]">User Using Voucher</a>
+          <button
+          nz-button
+          [nzType]="'dashed'"
+          [routerLink]="['detail', data.voucher_code]">
+          See Usage Data
+          </button>
         </td>
       </tr>
     </tbody>
@@ -110,10 +122,20 @@
         >Voucher limit</nz-form-label
       >
       <nz-form-control [nzSpan]="12">
-        <nz-input-number id="limit"
-          formControName="limit"
-          [nzStep]="1"
-        ></nz-input-number>
+        <input
+        #inputElement
+        style="width: 120px"
+        nz-input
+        nz-tooltip
+        nzTrigger="focus"
+        nzPlacement="topLeft"
+        nzOverlayClassName="numeric-input"
+        formControlName="limit"
+        [nzTitle]="title"
+        placeholder="Input a number"
+        (ngModelChange)="onChange($event)"
+        (blur)="onBlur()"
+      />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
